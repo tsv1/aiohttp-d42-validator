@@ -2,9 +2,10 @@ from functools import wraps
 from http import HTTPStatus
 from typing import Any, Callable, Coroutine, List, Optional
 
-import valera
 from aiohttp.web import Request, Response, json_response
-from district42.types import GenericSchema
+from d42.declaration.types import GenericSchema
+from d42.validation import Formatter
+from d42.validation import validate as d42_validate
 
 __all__ = ("validate", "HandlerType",)
 
@@ -24,8 +25,8 @@ class validate:
         self._json = json
 
     def _validate(self, value: Any, schema: GenericSchema) -> List[str]:
-        result = valera.validate(schema, value)
-        formatter = valera.Formatter()
+        result = d42_validate(schema, value)
+        formatter = Formatter()
         errors = [e.format(formatter) for e in result.get_errors()]
         return errors
 

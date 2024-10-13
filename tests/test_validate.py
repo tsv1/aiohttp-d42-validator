@@ -2,11 +2,11 @@ import string
 from http import HTTPStatus
 
 import pytest
-from district42 import schema
+from d42 import schema
 from multidict import istr
 from pytest import raises
 
-from aiohttp_valera_validator import validate
+from aiohttp_d42_validator import validate
 
 from ._utils import make_client, make_handler, make_server
 

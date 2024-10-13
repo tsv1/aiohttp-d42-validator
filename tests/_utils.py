@@ -5,8 +5,8 @@ from aiohttp.test_utils import TestClient, TestServer
 from aiohttp.web import Application, Request, Response
 from aiohttp.web_routedef import RouteDef
 
-from aiohttp_valera_validator import validate
-from aiohttp_valera_validator._validate import HandlerType
+from aiohttp_d42_validator import validate
+from aiohttp_d42_validator._validate import HandlerType
 
 __all__ = ("make_server", "make_client", "make_handler")
 

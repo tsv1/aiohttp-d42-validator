@@ -1,24 +1,24 @@
-# aiohttp-valera-validator
+# aiohttp-d42-validator
 
-[![Codecov](https://img.shields.io/codecov/c/github/tsv1/aiohttp-valera-validator/master.svg?style=flat-square)](https://codecov.io/gh/tsv1/aiohttp-valera-validator)
-[![PyPI](https://img.shields.io/pypi/v/aiohttp-valera-validator.svg?style=flat-square)](https://pypi.python.org/pypi/aiohttp-valera-validator/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/aiohttp-valera-validator?style=flat-square)](https://pypi.python.org/pypi/aiohttp-valera-validator/)
-[![Python Version](https://img.shields.io/pypi/pyversions/aiohttp-valera-validator.svg?style=flat-square)](https://pypi.python.org/pypi/aiohttp-valera-validator/)
+[![Codecov](https://img.shields.io/codecov/c/github/tsv1/aiohttp-d42-validator/master.svg?style=flat-square)](https://codecov.io/gh/tsv1/aiohttp-d42-validator)
+[![PyPI](https://img.shields.io/pypi/v/aiohttp-d42-validator.svg?style=flat-square)](https://pypi.python.org/pypi/aiohttp-d42-validator/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/aiohttp-d42-validator?style=flat-square)](https://pypi.python.org/pypi/aiohttp-d42-validator/)
+[![Python Version](https://img.shields.io/pypi/pyversions/aiohttp-d42-validator.svg?style=flat-square)](https://pypi.python.org/pypi/aiohttp-d42-validator/)
 
-Request validation for [aiohttp](https://docs.aiohttp.org/en/stable/) (via [valera](https://github.com/tsv1/valera))
+Request validation for [aiohttp](https://docs.aiohttp.org/en/stable/) (via [d42](https://d42.sh))
 
 ## Installation
 
 ```shell
-$ pip3 install aiohttp-valera-validator
+$ pip3 install aiohttp-d42-validator
 ```
 
 ## Usage
 
 ```python
 from aiohttp.web import Application, json_response, route, run_app
-from district42 import schema
-from aiohttp_valera_validator import validate
+from d42 import schema
+from aiohttp_d42_validator import validate
 
 ParamsSchema = schema.dict({
     "q": schema.str.len(1, ...)
@@ -56,8 +56,8 @@ run_app(app)
 ### Query params validation
 
 ```python
-from district42 import schema
-from aiohttp_valera_validator import validate
+from d42 import schema
+from aiohttp_d42_validator import validate
 
 # schema.dict is strict by default (all keys must be present)
 ParamsSchema = schema.dict({
@@ -74,8 +74,8 @@ async def handler(request):
 ### Headers validation
 
 ```python
-from district42 import schema
-from aiohttp_valera_validator import validate
+from d42 import schema
+from aiohttp_d42_validator import validate
 from multidict import istr
 
 # "..." means that there can be any other keys
@@ -95,8 +95,8 @@ async def handler(request):
 ### JSON body validation
 
 ```python
-from district42 import schema
-from aiohttp_valera_validator import validate
+from d42 import schema
+from aiohttp_d42_validator import validate
 
 BodySchema = schema.dict({
     "id": schema.int.min(1),
@@ -118,8 +118,8 @@ async def handler(request):
 Segments — is a variable part of URL path (aiohttp [uses](https://docs.aiohttp.org/en/stable/web_quickstart.html#variable-resources) `match_info` for it)
 
 ```python
-from district42 import schema
-from aiohttp_valera_validator import validate
+from d42 import schema
+from aiohttp_d42_validator import validate
 
 SegmentsSchema = schema.dict({
     "user_id": schema.str.regex(r"[1-9][0-9]*"),
@@ -137,7 +137,7 @@ async def handler(request):
 ```python
 from http import HTTPStatus
 from aiohttp.web import Request, Response
-from aiohttp_valera_validator import validate as validate_orig
+from aiohttp_d42_validator import validate as validate_orig
 
 class validate(validate_orig):
     def create_error_response(self, request: Request, errors: List[str]) -> Response:
@@ -148,4 +148,4 @@ class validate(validate_orig):
 
 —
 
-Fore more information read [valera docs](https://github.com/tsv1/valera)
+Fore more information read [d42](https://d42.sh)

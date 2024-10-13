@@ -1,4 +1,4 @@
-PROJECT_NAME=aiohttp_valera_validator
+PROJECT_NAME=aiohttp_d42_validator
 
 .PHONY: install
 install:
